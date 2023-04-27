@@ -179,26 +179,23 @@ main {
 
 .modal-container {
 	display: none;
+  align-items: center;
+  justify-content: center;
 	position: fixed;
-	left: 0;
 	top: 0;
+	left: 0;
+  bottom: 0;
+  right: 0;
 	z-index: 1;
 	
-  height: 100%;
-	width: 100%;
-	
 	background-color: rgba(26, 39, 156, 0.4);
-  
-  overflow: auto;
 }
 
-.content {
+.modal-content {
 	position: relative;
 
-	width: 100%;
-	max-width: 500px;
-  margin: 5% auto;
-	padding-top: 10px;
+	width: min(100%, 500px);
+	padding: 30px;
 	
 	background: #232323;
 	border-radius: 10px;
@@ -211,9 +208,11 @@ main {
 	animation-duration: var(--modal-duration);
 }
 
-.modal-body {
-	margin: 15px auto;
-	padding: 15px 8%;
+.close
+{
+  width: 100%;
+
+  text-align: right;
 }
 
 label {
@@ -360,37 +359,7 @@ input[data-error]::after {
 }
 
 .close {
-	position: absolute;
-	right: 15px;
-	top: 15px;
-
-  width: 32px;
-	height: 32px;
-
-  opacity: 1;
 	cursor: pointer;
-
-  transform: scale(0.7);
-}
-
-.close:before,
-.close:after {
-	position: absolute;
-	left: 15px;
-
-	height: 33px;
-	width: 3px;
-  content: " ";
-
-  background-color: #fff;
-}
-
-.close:before {
-	transform: rotate(45deg);
-}
-
-.close:after {
-	transform: rotate(-45deg);
 }
 
 .btn-submit,
