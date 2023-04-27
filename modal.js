@@ -1,7 +1,7 @@
 // open topNav (mobile)
 function editNav() {
-	var topNav = document.querySelector("#myTopnav");
-	topNav.classList.toggle("responsive");
+	var topNav = document.querySelector("#topnav");
+	topNav.classList.toggle("opened");
 }
 
 // DOM Elements
