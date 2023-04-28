@@ -461,6 +461,8 @@ legend {
 
 .radio-input:checked + .radio-label::after {
 	transform: scale(1);
+	-webkit-transform: scale(1);
+
 }
 
 /***** CHECKBOX INPUT *****/
@@ -524,6 +526,8 @@ legend {
 
 .checkbox-input:checked + .checkbox-label::after {
 	transform: scale(1);
+	-webkit-transform: scale(1);
+
 }
 
 #checkbox1:not(:checked) + .checkbox-label {
