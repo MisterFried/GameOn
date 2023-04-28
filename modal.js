@@ -9,7 +9,7 @@ const modalContainer = document.querySelector(
 	".modal-container"
 );
 const openModalBtn = document.querySelectorAll(
-	".open-modal-btn"
+	".open-modal-button"
 );
 const formData = document.querySelectorAll(".formData");
 const closeButton = document.querySelector("#close-modal");

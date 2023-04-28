@@ -1,109 +1,130 @@
-/*************** RESET ***************/
+/*************** RESET / BASIC STUFF ***************/
 
 :root {
-	--font-default: "DM Sans", Arial, Helvetica, sans-serif;
+	--main-color: #ff0000;
+	--text-color: #000000;
+	--text-secondary-color: #ffffff;
+	--hero-background-color: #232323;
+
+	--button-hover-color: #3876ac;
+
+	--modal-overlay-color: #1a279c66;
+
+	--form-not-valid: #ff0000;
+	--form-not-valid-bg: #ffdddd;
+	--form-valid: #279e7a;
+	--form-valid-bg: #deffde;
+	--form-not-valid-message: #ff6464;
+
+	--max-body-width: 1300px;
 }
 
 * {
 	box-sizing: border-box;
+
 	margin: 0;
 	padding: 0;
+
+	font-family: "DM Sans", Arial, Helvetica, sans-serif;
+	font-size: 1.125rem;
+	color: var(--text-color);
+	text-decoration: none;
 }
 
-/* Landing Page */
 body {
 	display: flex;
 	flex-direction: column;
+	gap: 2rem;
 
-	max-width: 1300px;
-	margin: 0 auto;
-
-	font-family: var(--font-default);
-	font-size: 18px;
-}
-
-main {
-	font-size: 130%;
-	font-weight: bolder;
-	color: black;
+	max-width: var(--max-body-width);
+	margin: 1rem auto 0;
 }
 
 /*************** TOP NAVBAR ***************/
 .topnav {
-	margin: 1rem;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
+	gap: 1rem;
 }
 
 .header-logo {
-	height: fit-content;
+	margin: 0 auto;
 }
 
 .main-navbar {
 	display: flex;
-	justify-content: center;
+
+	margin: 0 auto;
 }
 
-.topnav a {
+.nav-link {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 
-	padding: 1rem;
-	margin: 0.5rem;
+	padding: 0.5rem;
+	border-radius: 1rem;
 
-	border-radius: 15px;
-
-	color: #000000;
-	font-family: Roboto, sans-serif;
-	font-size: 20px;
-	text-align: center;
-	text-decoration: none;
+	font-size: 1.25rem;
 }
 
-.topnav a:hover,
-.topnav a.active {
-	background-color: #ff0000;
+.nav-link:hover,
+.nav-link.active {
+	background-color: var(--main-color);
 
-	color: #ffffff;
+	color: var(--text-secondary-color);
 }
 
-.topnav a.icon {
+.topnav .icon {
 	display: none;
 }
 
-/*************** TOP NAVBAR MOBILE ***************/
+/*************** TOPNAV MOBILE ***************/
 
-@media screen and (max-width: 768px) {
+@media screen and (width <= 800px) {
 	.topnav {
-		height: 72px;
+		margin: 0 1.5rem;
 	}
 
-	.topnav a {
+	/* reset the margin */
+	.main-navbar,
+	.header-logo {
+		margin: 0;
+	}
+
+	.main-navbar {
+		align-self: flex-start;
+	}
+
+	/* Hide the links */
+	.topnav .nav-link {
 		display: none;
 	}
 
-	.topnav a.icon {
+	/* Show the icon to open the navbar */
+	.topnav .icon {
 		display: block;
-	}
-
-	.topnav.opened a.icon {
-		align-self: flex-end;
-		order: -5;
-
-		width: fit-content;
-
-		background-color: #ff0000;
-
-		color: white;
+		padding: 0.5rem;
 	}
 
 	.topnav.opened {
 		position: relative;
 	}
 
+	/* Place the icon on top of the other links */
+	.topnav.opened .icon {
+		align-self: flex-end;
+		order: -5;
+
+		width: fit-content;
+		border-radius: 1rem;
+
+		background-color: var(--main-color);
+	}
+
+	/* Place the links below the icon */
 	.topnav.opened .main-navbar {
 		position: absolute;
 		right: 0;
@@ -111,14 +132,20 @@ main {
 		flex-direction: column;
 		z-index: 2;
 
-		background-color: #00000085;
-		border-radius: 15px;
+		border-radius: 1rem;
+
+		background-color: rgb(0, 0, 0, 0.6);
+		backdrop-filter: blur(5px);
 	}
 
-	.topnav.opened a {
+	.topnav.opened .nav-link {
 		display: block;
 
-		color: white;
+		color: var(--text-secondary-color);
+	}
+
+	.topnav.opened .icon i {
+		color: var(--text-secondary-color);
 	}
 }
 
@@ -129,79 +156,83 @@ main {
 	display: flex;
 
 	height: clamp(600px, 60vh, 900px);
-	margin: 0 auto;
-	border-radius: 10px;
+	margin: 0 2rem;
+	border-radius: 1rem;
 
-	box-shadow: 0 2px 7px 2px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 12px 12px 2px rgba(0, 0, 0, 0.25);
+
+	/* Border radius */
+	overflow: hidden;
 }
 
+/* Left side with the monochromatic background, growing in width */
 .left-side {
 	flex: 4 1 auto;
 
-	background: #232323;
+	background: var(--hero-background-color);
 }
 
 .right-side {
 	flex: 1 1 auto;
-
-	max-width: 100%;
 
 	object-fit: cover;
 }
 
 .hero-text-bloc {
 	position: absolute;
-	top: 20px;
-	left: 20px;
+	top: 1.5rem;
+	left: 1.5rem;
 
 	max-width: 80%;
-
-	color: white;
 }
 
 .hero-headline {
-	margin-bottom: 1em;
+	margin-bottom: 5rem;
 
 	font-size: 5rem;
-	font-weight: normal;
+	color: var(--text-secondary-color);
 }
 
 .hero-text {
+	max-width: 40ch;
 	margin-bottom: 2em;
+
+	color: var(--text-secondary-color);
 }
 
-.open-modal-btn {
+.open-modal-button {
 	display: flex;
 
-	margin-left: 2em;
+	margin-left: 2rem;
 	padding: 0.75rem 2.5rem;
 
-	background: #fe142f;
+	background: var(--main-color);
 	border-radius: 1rem;
 	border: none;
 
-	text-transform: capitalize;
 	font-size: 1.3rem;
-	color: #fff;
+	color: var(--text-secondary-color);
 
 	cursor: pointer;
 }
 
-.open-modal-btn:hover {
-	background: #3876ac;
+.open-modal-button:hover {
+	background: var(--button-hover-color);
 }
 
+/* Hide the second button when on desktop */
 .mobile-modal-button {
 	display: none;
 }
 
 /*************** RESPONSIVE HERO SECTION   ***************/
-@media screen and (max-width: 800px) {
+@media screen and (width <= 800px) {
 	.hero-section {
 		flex-direction: column;
 
-		height: fit-content;
-		padding: 1em;
+		height: auto;
+		margin: 0;
+		padding: 1rem;
 
 		box-shadow: none;
 	}
@@ -211,10 +242,8 @@ main {
 	}
 
 	.right-side {
-		width: 100%;
-		height: auto;
-
-		border-radius: 15px;
+		border-radius: 1rem;
+		box-shadow: 0 12px 12px 2px rgba(0, 0, 0, 0.25);
 	}
 
 	.hero-text-bloc {
@@ -222,30 +251,30 @@ main {
 		order: -1;
 
 		max-width: 100%;
-		
-		color: black;
 	}
 
 	.hero-headline {
+		margin-bottom: 2rem;
+
 		font-size: 4rem;
+		color: var(--text-color);
 	}
 
 	.hero-text {
-		font-weight: normal;
+		color: var(--text-color);
 	}
 
-	.open-modal-btn {
+	/* Hide the desktop open modal button */
+	.open-modal-button {
 		display: none;
 	}
 
 	.mobile-modal-button {
 		display: block;
 
-		width: fit-content;
 		margin: 3rem auto 0;
 	}
 }
-
 
 /*************** MODAL FORM ***************/
 
@@ -260,7 +289,7 @@ main {
 	right: 0;
 	z-index: 2;
 
-	background-color: rgba(26, 39, 156, 0.4);
+	background-color: var(--modal-overlay-color);
 }
 
 .modal-content {
@@ -270,118 +299,119 @@ main {
 
 	width: min(100%, 550px);
 	max-height: 80vh;
-	padding: 30px;
+	padding: 2rem;
+	/* scrollable form in bigger than viewport in height */
 	overflow-y: auto;
 
-	background: #232323;
-	border-radius: 10px;
+	background: var(--hero-background-color);
+	border-radius: 1rem;
 
-	color: #fff;
-
-	animation-name: modalopen;
-	animation-duration: 0.6s;
+	animation: modalopen 0.6s;
 }
 
 .close {
 	width: 100%;
 
+	font-size: 1.5rem;
 	text-align: right;
+	color: var(--text-secondary-color);
 
 	cursor: pointer;
 }
 
-/* TODO:style on label and input  *****************************/
+/*************** MODALE SLIDE IN ANIMATION ***************/
 
-.reservation-form
-{
+@keyframes modalopen {
+	from {
+		opacity: 0;
+
+		transform: translateY(-20%);
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+/*************** MODAL STLYE ON LABEL AND INPUT ***************/
+
+label,
+legend {
+	color: var(--text-secondary-color);
+}
+
+.reservation-form {
 	display: flex;
 	flex-direction: column;
-	gap: 20px;
+	gap: 1.5rem;
 }
 
-.formData {
+/***** TEXT INPUT *****/
+.form-data {
 	display: flex;
 	flex-direction: column;
-	gap: 5px;
-
-	font-size: 17px;
-	font-weight: normal;
+	gap: 0.3rem;
 }
 
-.text-control {
-	position: relative;
+.text-input {
+	padding: 0.5rem;
 
-	width: 100%;
-	padding: 8px;
+	border-radius: 0.5rem;
 
-	border: 0.8px solid #ccc;
-	border-radius: 8px;
-
-	font-size: 20px;
+	font-size: 1.25rem;
 }
 
-.text-control:invalid {
-	border: 1px solid red;
+/* Border and background for valid / invalid data */
+.text-input:invalid {
+	border: 1px solid var(--form-not-valid);
 }
 
-
-.text-control:focus:invalid {
-	background-color: #ffe3e3;
+.text-input:valid {
+	border: 1px solid var(--form-valid);
 }
 
-.text-control:valid {
-	border: 1px solid green;
+.text-input:focus:invalid {
+	background-color: var(--form-not-valid-bg);
 }
 
+.text-input:focus:valid {
+	background-color: var(--form-valid-bg);
+}
+
+/* Message when typing invalid input */
 .form-invalid {
 	display: none;
+
 	font-size: 0.75rem;
-	color: rgb(255, 100, 100);
+	color: var(--form-not-valid-message);
 }
 
-.text-control:focus:invalid + .form-invalid {
+.text-input:focus:invalid + .form-invalid {
 	display: block;
 }
 
-.formData-radio-input {
+/***** RADIO INPUT *****/
+.form-data-radio {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 1em;
-	padding: 0.5em;
-	padding-left: 30px;
+	gap: 1rem;
+	padding: 0.5rem;
+	padding-left: 2rem;
 }
 
-.radio-input-text {
-	font-size: 16px;
+.radio-input-legend {
 	text-align: center;
 }
 
 .radio-label,
 .checkbox-label {
-	font-size: 16px;
-	font-weight: normal;
+	font-size: 1rem;
 }
 
 .radio-label {
-	margin-right: 1em;
+	margin-right: 1.25rem;
 }
 
-.btn-submit {
-	display: block;
-
-	margin: 0 auto;
-	padding: 12px 82px;
-	border-radius: 7px;
-	border: 0;
-
-	background: #fe142f;
-
-	font-size: 1rem;
-	color: #fff;
-
-	cursor: pointer;
-}
-
+/* Hide default input to create custom one with label:before */
 .radio-input {
 	display: none;
 }
@@ -401,7 +431,7 @@ main {
 	width: 18px;
 	height: 18px;
 	border-radius: 50%;
-	border: 1px solid white;
+	border: 1px solid var(--text-secondary-color);
 }
 
 .radio-label::after {
@@ -417,27 +447,30 @@ main {
 
 .radio-input:checked + .radio-label {
 	font-weight: bolder;
-	color: #279E7A;
+	color: var(--form-valid);
 }
 
 .radio-input:checked + .radio-label::before {
-	border: 1px solid #279E7A;
+	border: 1px solid var(--form-valid);
 }
 
 .radio-input:checked + .radio-label::after {
-	background-color: #279E7A;
+	background-color: var(--form-valid);
 }
 
-.formData-checkbox-input {
+/***** CHECKBOX INPUT *****/
+
+.form-data-checkbox-input {
 	display: flex;
 	flex-direction: column;
-	gap: 0.5em;
+	gap: 0.5rem;
 
-	padding-left: 30px;
+	padding-left: 2rem;
 
 	border: none;
 }
 
+/* Hide default input to create custom one with label:before */
 .checkbox-input {
 	display: none;
 }
@@ -457,7 +490,7 @@ main {
 	width: 18px;
 	height: 18px;
 	border-radius: 2px;
-	border: 1px solid white;
+	border: 1px solid var(--text-secondary-color);
 }
 
 .checkbox-label::after {
@@ -472,54 +505,48 @@ main {
 }
 
 .checkbox-input:checked + .checkbox-label {
-	font-weight: bolder;
+	font-weight: bold;
 }
 
 .checkbox-input:checked + .checkbox-label::before {
-	border: 1px solid #279E7A;
+	border: 1px solid var(--form-valid);
 }
 
 .checkbox-input:checked + .checkbox-label::after {
-	background-color: #279E7A;
-}
-
-.conditions-invalid {
-	display: none;
-	font-size: 0.75rem;
-	color: rgb(255, 100, 100);
+	background-color: var(--form-valid);
 }
 
 #checkbox1:not(:checked) + .checkbox-label {
-	color: red;
+	color: var(--form-not-valid);
 }
 
-/*************** MODALE SLIDE IN ANIMATION ***************/
-@keyframes modalopen {
-	from {
-		opacity: 0;
+.button-submit {
+	display: block;
 
-		transform: translateY(-150px);
-	}
-	to {
-		opacity: 1;
-	}
+	margin: 0 auto;
+	padding: 1rem 3rem;
+	border-radius: 0.5rem;
+	border: none;
+
+	background: var(--main-color);
+
+	font-size: 1rem;
+	color: var(--text-secondary-color);
+
+	cursor: pointer;
 }
 
 /*************** !FOOTER ***************/
-footer {
-	margin: 0 20px;
-	padding: 0 2vw;
-}
 
 .copyrights {
-	margin: 60px 0 30px;
+	margin: 4rem 2rem 2rem;
 
 	font-size: 1rem;
 	font-weight: bolder;
-	color: #fe142f;
+	color: var(--main-color);
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (width <= 800px) {
 	.copyrights {
 		text-align: center;
 	}
