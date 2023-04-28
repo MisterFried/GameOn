@@ -319,7 +319,7 @@ body {
 	cursor: pointer;
 }
 
-/*************** MODALE SLIDE IN ANIMATION ***************/
+/*************** MODALE SLIDE IN/OUT ANIMATION ***************/
 
 @keyframes modalopen {
 	from {
@@ -443,6 +443,11 @@ legend {
 	width: 12px;
 	height: 12px;
 	border-radius: 50%;
+
+	background-color: var(--form-valid);
+
+	transform: scale(0);
+	transition: transform 0.2s ease-in-out;
 }
 
 .radio-input:checked + .radio-label {
@@ -455,7 +460,7 @@ legend {
 }
 
 .radio-input:checked + .radio-label::after {
-	background-color: var(--form-valid);
+	transform: scale(1);
 }
 
 /***** CHECKBOX INPUT *****/
@@ -502,6 +507,11 @@ legend {
 	width: 12px;
 	height: 12px;
 	border-radius: 2px;
+
+	background-color: var(--form-valid);
+
+	transform: scale(0);
+	transition: transform 0.2s ease-in-out;
 }
 
 .checkbox-input:checked + .checkbox-label {
@@ -513,7 +523,7 @@ legend {
 }
 
 .checkbox-input:checked + .checkbox-label::after {
-	background-color: var(--form-valid);
+	transform: scale(1);
 }
 
 #checkbox1:not(:checked) + .checkbox-label {

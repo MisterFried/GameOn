@@ -8,10 +8,9 @@ function editNav() {
 const modalContainer = document.querySelector(
 	".modal-container"
 );
-const openModalBtn = document.querySelectorAll(
+const openModalButton = document.querySelectorAll(
 	".open-modal-button"
 );
-const formData = document.querySelectorAll(".formData");
 const closeButton = document.querySelector("#close-modal");
 const reservationForm = document.querySelector(
 	"#reservation-form"
@@ -19,8 +18,8 @@ const reservationForm = document.querySelector(
 
 
 // open modal event listener
-openModalBtn.forEach((btn) =>
-	btn.addEventListener("click", openModal)
+openModalButton.forEach((button) =>
+	button.addEventListener("click", openModal)
 );
 
 // open modal function
