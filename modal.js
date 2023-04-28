@@ -17,6 +17,7 @@ const reservationForm = document.querySelector(
 	"#reservation-form"
 );
 
+
 // open modal event listener
 openModalBtn.forEach((btn) =>
 	btn.addEventListener("click", openModal)
