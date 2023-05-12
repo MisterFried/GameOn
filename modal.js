@@ -1,41 +1,41 @@
-// open topNav (mobile)
-function editNav() {
-	var topNav = document.querySelector("#topnav");
-	topNav.classList.toggle("opened");
+//***** Header navigation bar *****//
+function openNav() {
+	document.querySelector("#header-navbar").classList.toggle("open");
+	document.querySelector("#header-navbar").classList.toggle("close");
 }
+
+//*************** Modal display ***************//
 
 // DOM Elements
-const modalContainer = document.querySelector(
-	".modal-container"
-);
-const openModalButton = document.querySelectorAll(
-	".open-modal-button"
-);
-const closeButton = document.querySelector("#close-modal");
-const reservationForm = document.querySelector(
-	"#reservation-form"
-);
+const modalContainer = document.querySelector("#modal-container");
+const modal = document.querySelector("#modal");
 
+//Open modal
+document.querySelector("#open-modal-button").addEventListener("click", () => {
+	modalContainer.classList.add("open");
+	modalContainer.classList.remove("close");
+});
 
-// open modal event listener
-openModalButton.forEach((button) =>
-	button.addEventListener("click", openModal)
-);
-
-// open modal function
-function openModal() {
-	modalContainer.style.display = "flex";
-}
-
-// close modal event listener
-closeButton.addEventListener("click", closeModal);
-
-//close modal function
+//Close modal (button / outside click)
 function closeModal() {
-	modalContainer.style.display = "none";
+	modalContainer.classList.remove("open");
+	modalContainer.classList.add("close");
 }
 
-//send a confirmation to the user that the form has been send
-reservationForm.onsubmit = confirmation = () => {
-	alert("Merci ! Votre réservation a été reçue.");
-};
+document
+	.querySelector("#close-modal-button")
+	.addEventListener("click", closeModal);
+
+modalContainer.addEventListener("click", closeModal);
+
+modal.addEventListener("click", (e) => {
+	e.stopPropagation();
+});
+
+
+//*************** Get form data ***************//
+
+//name regex ^[a-z,A-Z]+(([\-,', ])?[a-z,A-Z])*$
+//email regex ^[a-z,A-Z,0-9]+([\-,.,_]?[a-z,A-Z,0-9]+)*@{1}[a-z,A-Z]{2,}\.{1}[a-z,A-Z]{2,}$
+//date regex ^[0-3]{1}[0-9]{1}\/[0-1]{1}[0-9]{1}\/[1-2]{1}[0-9]{3}$
+//number regex ^[0-9]{1,2}$
