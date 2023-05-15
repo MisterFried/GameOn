@@ -31,12 +31,12 @@
       <h1 class="hero-headline">
         Marathon national de jeux vidéos
       </h1>
-      <p class="hero-text">
+      <h2 class="hero-text">
         Vous aimez jouer ? Notre prochain évènement gaming est ouvert
         aux réservations... Places limitées !
-      </p>
+      </h2>
       <img class="hero-image" src="./images/bg_img.png" alt="hero image" />
-      <button class="primary-button" id="open-modal-button">
+      <button class="primary-button open-modal-button" id="open-modal-button" onclick="openModal()">
         Je m'inscris !
       </button>
     </section>
@@ -44,34 +44,34 @@
     <!-- Modal -->
     <section class="modal-container" id="modal-container">
       <div class="modal" id="modal">
-        <i class="fa-solid fa-xmark close-modal-button" id="close-modal-button"></i>
+        <i class="fa-solid fa-xmark close-modal-button" id="close-modal-button" onclick="closeModal()"></i>
         <form class="reservation-form" id="reservation-form" name="reservation">
           <!-- Text input -->
           <div class="form-data-text">
             <label for="firstname">Prénom</label>
             <input class="text-input" type="text" id="firstname" name="firstname" minlength="2" maxlength="20"
               required />
-            <span class="form-invalid-message">Merci d'écrire un prénom valide</span>
+            <span class="form-invalid-message">Veuillez écrire un prénom valide</span>
           </div>
           <div class="form-data-text">
             <label for="lastname">Nom</label>
             <input class="text-input" type="text" id="lastname" name="lastname" minlength="2" maxlength="20" required />
-            <span class="form-invalid-message">Merci d'écrire un nom valide</span>
+            <span class="form-invalid-message">Veuillez écrire un nom valide</span>
           </div>
           <div class="form-data-text">
             <label for="email">E-mail</label>
             <input class="text-input" type="email" id="email" name="email" required />
-            <span class="form-invalid-message">Merci d'écrire une adresse email valide</span>
+            <span class="form-invalid-message">Veuillez écrire une adresse email valide</span>
           </div>
           <div class="form-data-text">
             <label for="birthdate">Date de naissance</label>
             <input class="text-input" type="date" id="birthdate" name="birthdate" required />
-            <span class="form-invalid-message">Merci de sélectionner une date de naissance valide</span>
+            <span class="form-invalid-message">Veuillez de sélectionner une date de naissance valide</span>
           </div>
           <div class="form-data-text">
             <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label>
             <input type="number" class="text-input" id="quantity" name="quantity" min="0" max="99" required>
-            <span class="form-invalid-message">Veuillez sélectionner un nombre entre 0 et 99</span>
+            <span class="form-invalid-message">Veuillez sélectionner un nombre entre 0 et 100</span>
           </div>
           <!-- Radio input -->
           <fieldset class="form-data-radio" id="form-data-radio">
@@ -112,6 +112,10 @@
           </fieldset>
           <button class="primary-button submit-button" type="button" onclick=validateFormData()>C'est parti !</button>
         </form>
+        <div class="confirmation-message" id="confirmation-message">
+          <span>Merci pour votre inscription !</span>
+          <button class="primary-button" type="button" onclick=closeModal()>Fermer</button>
+        </div>
       </div>
     </section>
   </main>

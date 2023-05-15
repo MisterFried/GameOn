@@ -23,6 +23,7 @@
 
 	font-family: "DM Sans", Arial, Helvetica, sans-serif;
 	font-size: 1rem;
+	font-weight: 400;
 	color: var(--text-color);
 	text-decoration: none;
 	list-style-type: none;
@@ -41,6 +42,43 @@ body {
 	body {
 		gap: 2rem;
 	}
+}
+
+/*************** TYPOGRAPHY ***************/
+.header-link a, .text-input {
+	font-size: 1.25rem;
+}
+
+.header-mobile-icon i, .close-modal-button {
+	font-size: 2rem;
+}
+
+.header-mobile-icon i, .open-modal-button,
+.hero-text {
+	font-size: 1.5rem;
+}
+
+.hero-headline {
+	font-size: 6rem;
+}
+
+.confirmation-message span {
+	font-size: 2.5rem;
+}
+
+.form-invalid-message {
+	font-size: 0.75rem;
+}
+
+.header-mobile-icon i,
+.footer-copyrights {
+	color: var(--main-color);
+}
+
+.hero-headline, .hero-text, .primary-button,
+.close-modal-button, label, legend,
+.confirmation-message span {
+	color: var(--text-secondary-color);
 }
 
 /*************** HEADER ***************/
@@ -66,14 +104,9 @@ body {
 	transition: all 0.2s ease-in-out;
 }
 
-.header-link a {
-	font-size: 1.25rem;
-}
-
 .header-link:hover, .header-link.-active {
 	background-color: var(--main-color);
 }
-
 
 .header-link:hover a , .header-link.-active a{
 	color: var(--text-secondary-color);
@@ -114,14 +147,6 @@ body {
 	.header-mobile-icon {
 		display: block;
 	}
-
-	.header-mobile-icon i {
-		color: var(--main-color);
-	}
-
-	.header-mobile-icon i {
-		font-size: 2rem;
-	}
 }
 
 /*************** HEADER MOBILE ***************/
@@ -139,10 +164,6 @@ body {
 
 	.header-logo {
 		height: 2rem;
-	}
-
-	.header-mobile-icon i {
-		font-size: 1.5rem;
 	}
 }
 
@@ -165,14 +186,10 @@ body {
 }
 
 .hero-headline {
-	font-size: 6rem;
-	color: var(--text-secondary-color);
 	max-width: 60rem;
 }
 
 .hero-text {
-	font-size: 1.5rem;
-	color: var(--text-secondary-color);
 	max-width: 25rem;
 }
 
@@ -184,10 +201,8 @@ body {
 	width: fit-content;
 	padding: 0.75rem 2rem;
 	background-color: var(--main-color);
-	color: var(--text-secondary-color);
 	border: none;
 	border-radius: 1rem;
-	font-size: 1.5rem;
 
 	transition: all 0.2s ease-in-out;
 	cursor: pointer;
@@ -253,8 +268,6 @@ body {
 /*************** FOOTER ***************/
 .footer-copyrights {
 	padding: 1rem 2rem;
-
-	color: var(--main-color);
 }
 
 @media screen and (width <= 850px) {
@@ -288,7 +301,7 @@ body {
 	align-items: end;
 
 	width: min(100%, 550px);
-	max-height: 80vh;
+	height: min(80vh,800px);
 	padding: 1rem;
 	overflow-y: auto;
 
@@ -296,10 +309,7 @@ body {
 	border-radius: 1rem;
 }
 
-
 .close-modal-button {
-	font-size: 2rem;
-	color: var(--text-secondary-color);
 	text-align: right;
 	cursor: pointer;
 	width: fit-content;
@@ -355,11 +365,6 @@ body {
 }
 
 /*************** MODAL STLYE ON LABEL AND INPUT ***************/
-label,
-legend {
-	color: var(--text-secondary-color);
-}
-
 .reservation-form {
 	display: flex;
 	flex-direction: column;
@@ -376,15 +381,12 @@ legend {
 .text-input {
 	padding: 0.5rem;
 	border-radius: 0.5rem;
-
-	font-size: 1.25rem;
 }
 
 /**** Valid / Invalid input ****/
 .form-invalid-message {
 	display: none;
 
-	font-size: 0.75rem;
 	color: var(--form-not-valid-message);
 }
 
@@ -476,7 +478,6 @@ legend {
 }
 
 /***** CHECKBOX INPUT *****/
-
 .form-data-checkbox {
 	display: flex;
 	flex-direction: column;
@@ -537,7 +538,6 @@ legend {
 .checkbox-input:checked + .checkbox-label::after {
 	transform: scale(1);
 	-webkit-transform: scale(1);
-
 }
 
 #conditions:not(:checked) ~ .form-invalid-message {
@@ -547,7 +547,26 @@ legend {
 
 .submit-button {
 	margin: 0 auto;
-	font-size: 1rem;
 	padding: 0.5rem 2rem;
 	border-radius: 0.5rem;
+}
+
+.confirmation-message {
+	position: relative;
+	display: none;
+	width: 100%;
+	height: 100%;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.confirmation-message span {
+	text-align: center;
+	padding: 0 1rem;
+}
+
+.confirmation-message button {
+	position: absolute;
+	bottom: 0;
 }
