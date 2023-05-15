@@ -289,7 +289,7 @@ body {
 
 	width: min(100%, 550px);
 	max-height: 80vh;
-	padding: 2rem;
+	padding: 1rem;
 	overflow-y: auto;
 
 	background: var(--hero-background-color);
@@ -381,22 +381,6 @@ legend {
 }
 
 /**** Valid / Invalid input ****/
-.text-input:invalid {
-	border: 1px solid var(--form-not-valid);
-}
-
-.text-input:valid {
-	border: 1px solid var(--form-valid);
-}
-
-.text-input:focus:invalid {
-	background-color: var(--form-not-valid-bg);
-}
-
-.text-input:focus:valid {
-	background-color: var(--form-valid-bg);
-}
-
 .form-invalid-message {
 	display: none;
 
@@ -404,9 +388,20 @@ legend {
 	color: var(--form-not-valid-message);
 }
 
-.text-input:focus:invalid + .form-invalid-message {
+.text-input.valid {
+	background-color: var(--form-valid-bg);
+	border: 1px solid var(--form-valid);
+}
+
+.text-input.invalid {
+	background-color: var(--form-not-valid-bg);
+	border: 1px solid var(--form-not-valid);
+}
+
+.text-input.invalid + .form-invalid-message {
 	display: inline;
 }
+
 
 /**** RADIO INPUT ****/
 .form-data-radio {
@@ -471,7 +466,13 @@ legend {
 .radio-input:checked + .radio-label::after {
 	transform: scale(1);
 	-webkit-transform: scale(1);
+}
 
+.form-data-radio.invalid > .form-invalid-message {
+	display: inline;
+	width: 100%;
+	text-align: center;
+	margin-right: 2rem;
 }
 
 /***** CHECKBOX INPUT *****/
@@ -539,9 +540,12 @@ legend {
 
 }
 
-#conditions-utilisations:not(:checked) + .checkbox-label {
-	color: var(--form-not-valid);
+#conditions-utilisations:not(:checked) ~ .form-invalid-message {
+	display: inline;
+	margin-left: 1rem;
 }
+
+
 
 .submit-button {
 	margin: 0 auto;
