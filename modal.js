@@ -4,8 +4,8 @@ function openNav() {
 	document.querySelector("#header-navbar").classList.toggle("close");
 }
 
-//*************** Modal display ***************//
 
+//*************** Modal display ***************//
 // DOM Elements
 const modalContainer = document.querySelector("#modal-container");
 const modal = document.querySelector("#modal");
@@ -26,77 +26,119 @@ document
 	.querySelector("#close-modal-button")
 	.addEventListener("click", closeModal);
 
+//close the modal when clicking outside of it
 modalContainer.addEventListener("click", closeModal);
 
+//Stop event propagation of the modal to prevent it from closing itself when clicking inside of it
 modal.addEventListener("click", (e) => {
 	e.stopPropagation();
 });
 
 
 //*************** Get form data ***************//
-
 //regular expression fo form validation
 const nameRegex = /^[a-z,A-Z]+(([\-,', ])?[a-z,A-Z])*$/;
-const emailRegex = /^[a-z,A-Z,0-9]+([\-,.,_]?[a-z,A-Z,0-9]+)*@{1}[a-z,A-Z]{2,}\.{1}[a-z,A-Z]{2,}$/;
+const emailRegex =
+	/^[a-z,A-Z,0-9]+([\-,.,_]?[a-z,A-Z,0-9]+)*@{1}[a-z,A-Z]{2,}\.{1}[a-z,A-Z]{2,}$/;
 const birthdateRegex = /^[1-2]{1}[0-9]{3}-[0-1]{1}[0-9]{1}-[0-3]{1}[0-9]{1}$/;
-const numberRegex = /^[0-9]{1,2}$/;
+const quantityRegex = /^[0-9]{1,2}$/;
 
 const userRegistration = {};
 
-function validateInput (element) {
+function validateTextInput(element) {
 	element.classList.add("valid");
 	element.classList.remove("invalid");
+	userRegistration[element.name] = element.value;
 }
 
-function invalidateInput(element) {
+function invalidateTextInput(element) {
 	element.classList.add("invalid");
 	element.classList.remove("valid");
+	delete userRegistration[element.name];
 }
 
 //Check that the user age is below the maxAge (based on the current time)
-function dateVerification (birthdate){
+function dateVerification(birthdate) {
 	const birthdateObject = new Date(birthdate.value);
 	const actualDateObject = new Date(Date.now());
 	const maxAge = 120;
 
-	if (actualDateObject.getFullYear() - birthdateObject.getFullYear() <= maxAge) {
-		validateInput(birthdate);
+	if (birthdateObject > actualDateObject) {
+		invalidateTextInput(birthdate);
+	} else if (
+		actualDateObject.getFullYear() - birthdateObject.getFullYear() <=
+		maxAge
+	) {
+		validateTextInput(birthdate);
+	} else {
+		invalidateTextInput(birthdate);
 	}
-	else {
-		invalidateInput (birthdate);
-	}
+}
+
+function validateRadioInput(radioInputSection, radioInput) {
+	radioInputSection.classList.add("valid");
+	radioInputSection.classList.remove("invalid");
+	userRegistration[radioInput.name] = radioInput.value;
+}
+
+function invalidateRadioInput(radioInputSection) {
+	radioInputSection.classList.add("invalid");
+	radioInputSection.classList.remove("valid");
 }
 
 //Verification of each input with regular expression
 //if valid : add a valid class to the input, otherwise add invalid class
-function validateFormData () {
+function validateFormData() {
 	const firstname = document.querySelector("#firstname");
 	const lastname = document.querySelector("#lastname");
 	const email = document.querySelector("#email");
 	const birthdate = document.querySelector("#birthdate");
 	const quantity = document.querySelector("#quantity");
-	const radioInput = document.querySelectorAll(".radio-input[name='location']:checked");
+	const radioInput = document.querySelector(
+		".radio-input[name='location']:checked"
+	);
 	const radioInputSection = document.querySelector("#form-data-radio");
-	const conditionsUtilisations = document.querySelector("#conditions-utilisations");
+	const conditions = document.querySelector("#conditions");
 	const newsletter = document.querySelector("#newsletter");
 
-	(nameRegex.test(firstname.value))
-	? validateInput(firstname) : invalidateInput(firstname);
+	nameRegex.test(firstname.value)
+		? validateTextInput(firstname)
+		: invalidateTextInput(firstname);
 
-	(nameRegex.test(lastname.value))
-	? validateInput(lastname) : invalidateInput(lastname);
+	nameRegex.test(lastname.value)
+		? validateTextInput(lastname)
+		: invalidateTextInput(lastname);
 
-	(emailRegex.test(email.value))
-	? validateInput(email) : invalidateInput(email);
+	emailRegex.test(email.value)
+		? validateTextInput(email)
+		: invalidateTextInput(email);
 
 	//additional verification to check the age of the user
 	birthdateRegex.test(birthdate.value)
-	? dateVerification(birthdate) : invalidateInput(birthdate);
+		? dateVerification(birthdate)
+		: invalidateTextInput(birthdate);
 
-	(numberRegex.test(quantity.value))
-	? validateInput(quantity) : invalidateInput(quantity);	
+	quantityRegex.test(quantity.value)
+		? validateTextInput(quantity)
+		: invalidateTextInput(quantity);
 
-	//check that at least one option is selected
-	(radioInput.length === 0)
-	? invalidateInput(radioInputSection) : validateInput(radioInputSection);
+	//check that at least one location is selected
+	radioInput
+		? validateRadioInput(radioInputSection, radioInput)
+		: invalidateRadioInput(radioInputSection);
+
+	userRegistration[conditions.name] = conditions.checked;
+	userRegistration[newsletter.name] = newsletter.checked;
+
+	if (
+		userRegistration.firstname &&
+		userRegistration.lastname &&
+		userRegistration.email &&
+		userRegistration.birthdate &&
+		userRegistration.quantity &&
+		userRegistration.location &&
+		userRegistration.conditions
+	) {
+		console.log(userRegistration);
+	}
 }

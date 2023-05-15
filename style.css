@@ -540,12 +540,10 @@ legend {
 
 }
 
-#conditions-utilisations:not(:checked) ~ .form-invalid-message {
+#conditions:not(:checked) ~ .form-invalid-message {
 	display: inline;
 	margin-left: 1rem;
 }
-
-
 
 .submit-button {
 	margin: 0 auto;
