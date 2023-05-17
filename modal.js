@@ -15,10 +15,10 @@ function closeNav () {
 
 //Close navbar (click outside)
 const body = document.querySelector("body")
-body.addEventListener("click", closeNav);
-
 const navIcon = document.querySelector(".header-mobile-icon");
 const navBar = document.querySelector(".header-navbar");
+body.addEventListener("click", closeNav);
+//Stop event propagation to prevent the navbar from closing itself when clicking inside
 navIcon.addEventListener("click", (e) => {e.stopPropagation()});
 navBar.addEventListener("click", (e) => {e.stopPropagation();});
 

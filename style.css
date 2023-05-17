@@ -5,9 +5,7 @@
 	--text-color: #232323;
 	--text-secondary-color: #fafafa;
 	--hero-background-color: #232323;
-
 	--modal-overlay-color: #1a279c66;
-
 	--form-not-valid: #ff0000;
 	--form-not-valid-bg: #ffdddd;
 	--form-not-valid-message: #ff6464;
@@ -17,10 +15,8 @@
 
 * {
 	box-sizing: border-box;
-
 	margin: 0;
 	padding: 0;
-
 	font-family: "DM Sans", Arial, Helvetica, sans-serif;
 	font-size: 1rem;
 	font-weight: 400;
@@ -29,11 +25,15 @@
 	list-style-type: none;
 }
 
+.primary-button, .close-modal-button,
+.radio-label, .checkbox-label {
+	cursor: pointer;
+}
+
 body {
 	display: flex;
 	flex-direction: column;
 	gap: 5rem;
-
 	max-width: 1440px;
 	margin: 0 auto;
 }
@@ -43,10 +43,13 @@ body {
 		gap: 2rem;
 	}
 }
-
 /*************** TYPOGRAPHY ***************/
-.header-link a, .text-input {
-	font-size: 1.25rem;
+.hero-headline {
+	font-size: 6rem;
+}
+
+.confirmation-message span {
+	font-size: 2.5rem;
 }
 
 .header-mobile-icon i, .close-modal-button {
@@ -58,16 +61,26 @@ body {
 	font-size: 1.5rem;
 }
 
-.hero-headline {
-	font-size: 6rem;
-}
-
-.confirmation-message span {
-	font-size: 2.5rem;
+.header-link a, .text-input {
+	font-size: 1.25rem;
 }
 
 .form-invalid-message {
 	font-size: 0.75rem;
+}
+
+.checkbox-input:checked + .checkbox-label,
+.radio-input:checked + .radio-label {
+	font-weight: 600;
+}
+
+.form-data-radio.invalid > .form-invalid-message,
+.confirmation-message span {
+	text-align: center;
+}
+
+.close-modal-button {
+	text-align: right;
 }
 
 .header-mobile-icon i,
@@ -81,6 +94,13 @@ body {
 	color: var(--text-secondary-color);
 }
 
+.form-invalid-message {
+	color: var(--form-not-valid-message);
+}
+
+.radio-input:checked + .radio-label {
+	color: var(--form-valid);
+}
 /*************** HEADER ***************/
 .header {
 	display: flex;
@@ -116,7 +136,6 @@ body {
 .header-mobile-icon {
 	display: none;
 }
-
 /*************** HEADER TABLET ***************/
 @media screen and (width <= 1200px) {
 	.header {
@@ -124,11 +143,9 @@ body {
 
 		padding: 3.125rem 3.125rem 0
 	}
-
 	.header-navbar.close {
 		display: none;
 	}
-
 	.header-navbar.open {
 		display: flex;
 		flex-wrap: wrap;
@@ -137,36 +154,33 @@ body {
 		z-index: 1;
 		top: calc(100% + 1rem);
 		right: 3.125rem;
+		
+		padding: 1rem;
+		border: 1px solid #0c0c0c20;
+		border-radius: 1rem;
+
 		background-color: #fafafa90;
 		backdrop-filter: blur(5px);
-		padding: 1rem;
-		border-radius: 1rem;
-		border: 1px solid #0c0c0c20;
 	}
-
 	.header-mobile-icon {
 		display: block;
 	}
 }
-
 /*************** HEADER MOBILE ***************/
 @media screen and (width <= 850px) {
 	.header {
 		padding: 1.5rem 1.5rem 0;
 	}
-
 	.header-navbar.open {
 		flex-direction: column;
 		align-items: normal;
 		right: 1.5rem;
 		gap: 0.5rem;
 	}
-
 	.header-logo {
 		height: 2rem;
 	}
 }
-
 /*************** HERO SECTION ***************/
 .hero-section {
 	display: flex;
@@ -175,14 +189,13 @@ body {
 
 	margin: 0 6.25rem;
 	padding: 3.5rem 3.5rem 4.375rem;
-
+	border-radius: 1rem;
+	
 	background: url("./images/bg_img.png") center right no-repeat, var(--hero-background-color);
 	background-size: auto 100%;
-
-	border-radius: 1rem;
-	overflow: hidden;
-
 	box-shadow: 0px 12px 12px rgba(0, 0, 0, 0.25);
+
+	overflow: hidden;
 }
 
 .hero-headline {
@@ -200,71 +213,71 @@ body {
 .primary-button {
 	width: fit-content;
 	padding: 0.75rem 2rem;
-	background-color: var(--main-color);
 	border: none;
 	border-radius: 1rem;
 
+	background-color: var(--main-color);
+
 	transition: all 0.2s ease-in-out;
-	cursor: pointer;
 }
 
 .primary-button:hover {
 	background-color: var(--main-color-lighter);
+
 	transform: scale(1.05);
 }
-
 /*************** HERO SECTION TABLET ***************/
 @media screen and (width <= 1200px) {
 	.hero-section {
-		background: url("./images/bg_img.png") center no-repeat;
-		background-size: cover;
-
 		margin: 0 3.125rem;
 		padding: 2.5rem 2.5rem 3.5rem;
-	}
 
+		background: url("./images/bg_img.png") center no-repeat;
+		background-size: cover;
+	}
 	.hero-headline {
-		font-size: 4.5rem;
 		width: min(40rem,100%);
-	}
 
+		font-size: 4.5rem;
+	}
 }
 /*************** HERO SECTION MOBILE ***************/
 @media screen and (width <= 850px) {
 	.hero-section {
-		background: none;
-		box-shadow: none;
-		padding: 1.75rem 1.75rem 0;
-		margin: 0;
 		gap: 1rem;
-	}
 
+		margin: 0;
+		padding: 1.75rem 1.75rem 0;
+
+		background: none;
+
+		box-shadow: none;
+	}
 	.hero-headline {
 		font-size: 2.5rem;
 		color: var(--text-color);
 	}
-
 	.hero-text {
+		max-width: 100%;
+
 		font-size: 0.875rem;
 		color: var(--text-color);
-		max-width: 100%;
 	}
-
 	.hero-image {
 		display: block;
-		max-width: 100%;
-		border-radius: 0.5rem;
-		margin-top: 1rem;
-	}
 
+		max-width: 100%;
+		margin-top: 1rem;
+		border-radius: 0.5rem;
+	}
 	.primary-button {
-		font-size: 0.875rem;
 		margin: 0.5rem auto 0;
 		padding: 0.5rem 2rem;
 		border-radius: 0.5rem;
+
+		font-size: 0.875rem;
 	}
 }
-
 /*************** FOOTER ***************/
 .footer-copyrights {
 	padding: 1rem 2rem;
@@ -276,7 +289,6 @@ body {
 		margin: 0;
 	}
 }
-
 /*************** MODAL FORM ***************/
 .modal-container {
 	visibility: hidden;
@@ -303,31 +315,26 @@ body {
 	width: min(100%, 550px);
 	height: min(80vh,800px);
 	padding: 1rem;
-	overflow-y: auto;
-
-	background: var(--hero-background-color);
 	border-radius: 1rem;
+	
+	background: var(--hero-background-color);
+
+	overflow-y: auto;
 }
 
 .close-modal-button {
-	text-align: right;
-	cursor: pointer;
 	width: fit-content;
 }
-
 /*************** MODALE SLIDE IN/OUT ANIMATION ***************/
 .modal-container.close {
 	animation: modal-container-close 0.3s forwards;
 }
-
 .modal-container.open {
 	animation: modal-container-open 0.3s forwards;
 }
-
 .modal-container.close .modal{
 	animation: modal-close 0.3s forwards;
 }
-
 .modal-container.open .modal{
 	animation: modal-open 0.3s forwards;
 }
@@ -336,12 +343,10 @@ body {
 	from {transform: translateY(-20%);}
 	to {transform: translateY(0%);}
 }
-
 @keyframes modal-close {
 	from {transform: translateY(0%);}
 	to {transform: translateY(-20%);}
 }
-
 @keyframes modal-container-open {
 	from {
 		visibility: hidden;
@@ -352,7 +357,6 @@ body {
 		opacity: 1;
 	}
 }
-
 @keyframes modal-container-close {
 	from {
 		visibility: visible;
@@ -363,7 +367,6 @@ body {
 		opacity: 0;
 	}
 }
-
 /*************** MODAL STLYE ON LABEL AND INPUT ***************/
 .reservation-form {
 	display: flex;
@@ -386,30 +389,30 @@ body {
 /**** Valid / Invalid input ****/
 .form-invalid-message {
 	display: none;
-
-	color: var(--form-not-valid-message);
 }
 
 .text-input.valid {
-	background-color: var(--form-valid-bg);
 	border: 1px solid var(--form-valid);
+
+	background-color: var(--form-valid-bg);
 }
 
 .text-input.invalid {
-	background-color: var(--form-not-valid-bg);
 	border: 1px solid var(--form-not-valid);
+
+	background-color: var(--form-not-valid-bg);
 }
 
 .text-input.invalid + .form-invalid-message {
 	display: inline;
 }
 
-
 /**** RADIO INPUT ****/
 .form-data-radio {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 1rem;
+
 	padding: 0.5rem 0.5rem 0.5rem 2rem;
 }
 
@@ -424,20 +427,18 @@ body {
 
 .radio-label {
 	position: relative;
-
-	cursor: pointer;
 }
 
 .radio-label::before {
 	position: absolute;
 	left: -1.5rem;
 	top: 0;
-
+	
 	content: "";
 	width: 1.125rem;
 	height: 1.125rem;
-	border-radius: 50%;
 	border: 1px solid var(--text-secondary-color);
+	border-radius: 50%;
 }
 
 .radio-label::after {
@@ -456,11 +457,6 @@ body {
 	transition: transform 0.2s ease-in-out;
 }
 
-.radio-input:checked + .radio-label {
-	font-weight: 600;
-	color: var(--form-valid);
-}
-
 .radio-input:checked + .radio-label::before {
 	border: 1px solid var(--form-valid);
 }
@@ -472,8 +468,8 @@ body {
 
 .form-data-radio.invalid > .form-invalid-message {
 	display: inline;
+
 	width: 100%;
-	text-align: center;
 	margin-right: 2rem;
 }
 
@@ -484,7 +480,6 @@ body {
 	gap: 0.5rem;
 
 	padding-left: 2rem;
-
 	border: none;
 }
 
@@ -495,8 +490,6 @@ body {
 
 .checkbox-label {
 	position: relative;
-
-	cursor: pointer;
 }
 
 .checkbox-label::before {
@@ -527,10 +520,6 @@ body {
 	transition: transform 0.2s ease-in-out;
 }
 
-.checkbox-input:checked + .checkbox-label {
-	font-weight: 600;
-}
-
 .checkbox-input:checked + .checkbox-label::before {
 	border: 1px solid var(--form-valid);
 }
@@ -542,6 +531,7 @@ body {
 
 #conditions:not(:checked) ~ .form-invalid-message {
 	display: inline;
+
 	margin-left: 1rem;
 }
 
@@ -554,15 +544,15 @@ body {
 .confirmation-message {
 	position: relative;
 	display: none;
-	width: 100%;
-	height: 100%;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+
+	width: 100%;
+	height: 100%;
 }
 
 .confirmation-message span {
-	text-align: center;
 	padding: 0 1rem;
 }
 
