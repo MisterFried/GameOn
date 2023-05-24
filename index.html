@@ -19,7 +19,7 @@
       <li class="header-link"><a href="#">Contact</a></li>
       <li class="header-link"><a href="#">Évènements passés</a></li>
     </ul>
-    <a href="#" class="header-mobile-icon" id="header-mobile-icon" onclick="openNav()">
+    <a href="#" class="header-mobile-icon" id="header-mobile-icon" onclick="toggleNav()">
       <i class="fa-solid fa-bars"></i>
     </a>
   </header>
@@ -72,7 +72,7 @@
             <span class="form-invalid-message">Veuillez sélectionner un nombre entre 0 et 99</span>
           </div>
           <!-- Radio input -->
-          <fieldset class="form-data-radio" id="form-data-radio">
+          <fieldset class="form-data-radio" id="form-data-radio" name="location">
             <legend class="radio-input-legend">A quel tournoi souhaitez-vous participer cette année ?</legend>
             <div class="radio-input-container">
               <input class="radio-input" type="radio" id="newyork" name="location" value="New York" required />
@@ -108,11 +108,11 @@
             <input class="checkbox-input" type="checkbox" id="newsletter" name="newsletter" />
             <label class="checkbox-label" for="newsletter">Je Je souhaite être prévenu des prochains évènements.</label>
           </fieldset>
-          <button class="primary-button submit-button" type="button" onclick=validateFormData()>C'est parti !</button>
+          <button class="primary-button submit-button" type="button" onclick=handleForm()>C'est parti !</button>
         </form>
         <div class="confirmation-message" id="confirmation-message">
           <span>Merci pour votre inscription !</span>
-          <button class="primary-button" type="button" onclick=closeModal()>Fermer</button>
+          <button class="primary-button" type="button" onclick=resetForm()>Fermer</button>
         </div>
       </div>
     </section>
@@ -124,6 +124,8 @@
     </p>
   </footer>
 
-  <script src="./modal.js"></script>
+  <script src="./js/formDisplay.js"></script>
+  <script src="./js/formVerfication.js"></script>
+  <script src="./js/navbarDisplay.js"></script>
 </body>
 </html>

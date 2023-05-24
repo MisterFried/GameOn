@@ -26,7 +26,7 @@
 }
 
 .primary-button, .close-modal-button,
-.radio-label, .checkbox-label {
+.radio-label, .checkbox-label, .header-link {
 	cursor: pointer;
 }
 
@@ -416,6 +416,10 @@ body {
 	padding: 0.5rem 0.5rem 0.5rem 2rem;
 }
 
+.radio-input-legend {
+	padding: 0 0.5rem;
+}
+
 .radio-label {
 	margin-right: 1.25rem;
 }
@@ -464,6 +468,10 @@ body {
 .radio-input:checked + .radio-label::after {
 	transform: scale(1);
 	-webkit-transform: scale(1);
+}
+
+.form-data-radio.invalid {
+	border-color: var(--form-not-valid-message);
 }
 
 .form-data-radio.invalid > .form-invalid-message {
@@ -529,7 +537,7 @@ body {
 	-webkit-transform: scale(1);
 }
 
-#conditions:not(:checked) ~ .form-invalid-message {
+#conditions.invalid ~ .form-invalid-message {
 	display: inline;
 
 	margin-left: 1rem;
