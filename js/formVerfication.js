@@ -1,7 +1,7 @@
 //RegEx for form validation
 const nameRegex = /^[a-z,A-Z]+(([\-,', ])?[a-z,A-Z])*$/;
 const emailRegex = /^[a-z,A-Z,0-9]+([\-,.,_]?[a-z,A-Z,0-9]+)*@{1}[a-z,A-Z]{2,}\.{1}[a-z,A-Z]{2,}$/;
-const birthdateRegex = /^[1-2]{1}[0-9]{3}-[0-1]{1}[0-9]{1}-[0-3]{1}[0-9]{1}$/;
+const birthdateRegex = /^[1-2]{1}[0-9]{3}-[0-1]{1}[0-9]{1}-[0-3]{1}[0-9]{1}$/; //YYYY - MM - DD
 const quantityRegex = /^[0-9]{1,2}$/;
 
 //Array containing all the input elements
@@ -33,13 +33,12 @@ function dateVerification(birthdate) {
 	const birthdateObject = new Date(birthdate.value);
 	const actualDateObject = new Date(Date.now());
 	const currentAge = actualDateObject.getFullYear() - birthdateObject.getFullYear();
-	const maxAge = 120;
+	const maxAge = 100;
 
 	if (currentAge > 0 && currentAge <= maxAge) {
 		validateTextInput(birthdate);
 		return true;
-	}
-	else {
+	} else {
 		invalidateTextInput(birthdate);
 		return false;
 	}
@@ -59,7 +58,7 @@ function invalidateRadioInput(radioInputSection) {
 }
 
 //Validate the checkbox input (CSS) and add its value to userRegistration
-function validateCheckboxInput (element) {
+function validateCheckboxInput(element) {
 	element.classList.add("valid");
 	element.classList.remove("invalid");
 	userRegistration[element.name] = element.checked;
@@ -73,12 +72,11 @@ function invalidateCheckboxInput(element) {
 }
 
 //Handle form submission
-function handleForm () {
+function handleForm() {
 	validateFormData();
 
 	//Verify is one of the inputs are not valid (has invalid class)
-	const isInvalidData = fields.map((element) => element.classList.contains("invalid"))
-	.includes(true);
+	const isInvalidData = fields.map((element) => element.classList.contains("invalid")).includes(true);
 
 	if (!isInvalidData) {
 		console.log(userRegistration);
@@ -108,9 +106,7 @@ function validateFormData() {
 
 			//Additional verification on the birthdate
 			case "birthdate":
-				birthdateRegex.test(element.value)
-					? valid = dateVerification(element)
-					: valid = false;
+				birthdateRegex.test(element.value) ? (valid = dateVerification(element)) : (valid = false);
 				break;
 
 			case "quantity":
@@ -125,14 +121,16 @@ function validateFormData() {
 				valid = element.checked;
 				break;
 		}
-		if (element.type === "text" ||	element.type === "email" ||
-				element.type === "date" || element.type === "number") {
+		if (
+			element.type === "text" ||
+			element.type === "email" ||
+			element.type === "date" ||
+			element.type === "number"
+		) {
 			valid ? validateTextInput(element) : invalidateTextInput(element);
-		}
-		else if (element.name === "location") {
+		} else if (element.name === "location") {
 			valid ? validateRadioInput(element, radioInput) : invalidateRadioInput(element);
-		}
-		else if (element.name === "conditions") {
+		} else if (element.name === "conditions") {
 			valid ? validateCheckboxInput(element) : invalidateCheckboxInput(element);
 		}
 		//No verification on the newsletter input (not mandatory)
@@ -145,16 +143,19 @@ function validateFormData() {
 //DOM elements
 const form = document.querySelector("#reservation-form");
 const confirmationMessage = document.querySelector("#confirmation-message");
+const closeButton = document.querySelector("#close-modal-button");
 
 //Replace the form with a confirmation message
 function displayConfirmationMessage() {
 	form.style.display = "none";
 	confirmationMessage.style.display = "flex";
+	closeButton.addEventListener("click", resetForm);
 }
 
 //Close and reset the form
-function resetForm () {
+function resetForm() {
 	closeModal();
+	closeButton.removeEventListener("click", resetForm);
 	//Delay to avoid seeing the form coming back during the slide-out animation
 	setTimeout(() => {
 		document.querySelectorAll(".text-input").forEach((element) => (element.value = ""));
@@ -163,5 +164,5 @@ function resetForm () {
 		fields.forEach((element) => element.classList.remove("valid"));
 		form.style.display = "flex";
 		confirmationMessage.style.display = "none";
-	},300);
+	}, 300);
 }
